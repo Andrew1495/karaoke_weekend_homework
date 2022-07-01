@@ -9,7 +9,7 @@ class TestSong(unittest.TestCase):
 
 
     def test_song_has_name(self):
-        self.assertEqual("yellow Submarine", self.song1.name)
+        self.assertEqual("Yellow Submarine", self.song1.name)
         self.assertEqual("Hey Jude", self.song2.name)
 
     def test_song_artist(self):

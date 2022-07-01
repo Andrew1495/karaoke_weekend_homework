@@ -4,7 +4,7 @@ from src.guest import Guest
 class TestGuest(unittest.TestCase):
 
     def setUp(self):
-        self.guest1 = Guest("Bob", 25.00, "Yellow submarine")
+        self.guest1 = Guest("Bob", 25.00, "Yellow Submarine")
         self.guest2 = Guest("Frank", 50.00, "Hey Jude")
 
 
@@ -20,5 +20,5 @@ class TestGuest(unittest.TestCase):
 
     
     def test_guest_has_fav_song(self):
-        self.assertEqual("Yellow submarine", self.guest1.fav_song)
+        self.assertEqual("Yellow Submarine", self.guest1.fav_song)
         self.assertEqual("Hey Jude", self.guest2.fav_song)
