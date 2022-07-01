@@ -8,3 +8,5 @@ class Group:
     def remove_from_group(self, guest):
         self.group.remove(guest)
     
+
+    

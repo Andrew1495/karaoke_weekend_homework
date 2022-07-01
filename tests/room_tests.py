@@ -1,9 +1,22 @@
 import unittest
 from src.room import Room
+from src.group import Group
+from src.guest import Guest
+
+
 class TestRoom(unittest.TestCase):
     def setUp(self):
         self.room1 = Room("room 1", 5)
         self.room2 = Room("room 2", 3)
+        self.guest1 = Guest("Bob", 25.00, "Yellow Submarine")
+        self.guest2 = Guest("Frank", 50.00, "Hey Jude")
+        self.guest3 = Guest("Steve", 30.00, "Let It Be")
+        self.group = Group()
+        self.group.add_to_group(self.guest1)
+        self.group.add_to_group(self.guest2)
+        self.group.add_to_group(self.guest3)
+
+
 
 
     def test_room_names(self):
@@ -21,3 +34,13 @@ class TestRoom(unittest.TestCase):
     def test_no_guests_in_room(self):
         self.assertEqual(0, len(self.room1.guests))
         self.assertEqual(0, len(self.room2.guests))
+
+    # def test_add_guest_to_room(self):
+    #     self.room1.add_guest_room(self.guest1)
+    #     self.assertEqual("Bob", self.room1.guests[0].name)
+
+    def test_add_group_to_room(self):
+        self.room1.add_guest_room(self.group)
+        self.assertEqual("Bob", self.room1.guests[0].name)
+        self.assertEqual("Frank", self.room1.guests[1])
+        self.assertEqual("Steve", self.room1.guests[2])

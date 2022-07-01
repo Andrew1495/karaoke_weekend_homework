@@ -7,8 +7,6 @@ class TestGuest(unittest.TestCase):
         self.guest1 = Guest("Bob", 25.00, "Yellow Submarine")
         self.guest2 = Guest("Frank", 50.00, "Hey Jude")
 
-
-
     def test_guest_has_name(self):
         self.assertEqual("Bob", self.guest1.name)
         self.assertEqual("Frank", self.guest2.name)
@@ -17,8 +15,6 @@ class TestGuest(unittest.TestCase):
         self.assertEqual(25.00, self.guest1.wallet)
         self.assertEqual(50.00, self.guest2.wallet)
 
-
-    
     def test_guest_has_fav_song(self):
         self.assertEqual("Yellow Submarine", self.guest1.fav_song)
         self.assertEqual("Hey Jude", self.guest2.fav_song)
