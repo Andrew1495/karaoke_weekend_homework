@@ -12,6 +12,4 @@ class Room:
     def add_guest_room(self, guest):
         self.guests.append(guest)
 
-    def add_group_to_room(self, group):
-        for guest in group:
             

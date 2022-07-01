@@ -1,6 +1,5 @@
 import unittest
 from src.room import Room
-from src.group import Group
 from src.guest import Guest
 
 
@@ -35,12 +34,7 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(0, len(self.room1.guests))
         self.assertEqual(0, len(self.room2.guests))
 
-    # def test_add_guest_to_room(self):
-    #     self.room1.add_guest_room(self.guest1)
-    #     self.assertEqual("Bob", self.room1.guests[0].name)
-
-    def test_add_group_to_room(self):
-        self.room1.add_guest_room(self.group)
+    def test_add_guest_to_room(self):
+        self.room1.add_guest_room(self.guest1)
         self.assertEqual("Bob", self.room1.guests[0].name)
-        self.assertEqual("Frank", self.room1.guests[1])
-        self.assertEqual("Steve", self.room1.guests[2])
+

@@ -1,7 +1,6 @@
 import unittest
 from src.karaoke_venue import Venue
 from src.guest import Guest
-from src.group import Group
 from src.room import Room
 from src.song import Song
 
