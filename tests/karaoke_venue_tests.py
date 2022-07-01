@@ -1,6 +1,6 @@
 import unittest
 from src.karaoke_venue import Venue
-from src.guest import Guest
+# from src.guest import Guest
 
 
 
