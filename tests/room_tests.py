@@ -1,6 +1,7 @@
 import unittest
 from src.room import Room
 from src.guest import Guest
+from src.song import Song
 
 
 class TestRoom(unittest.TestCase):
@@ -10,10 +11,9 @@ class TestRoom(unittest.TestCase):
         self.guest1 = Guest("Bob", 25.00, "Yellow Submarine")
         self.guest2 = Guest("Frank", 50.00, "Hey Jude")
         self.guest3 = Guest("Steve", 30.00, "Let It Be")
-        self.group = Group()
-        self.group.add_to_group(self.guest1)
-        self.group.add_to_group(self.guest2)
-        self.group.add_to_group(self.guest3)
+        self.song1 = Song("Yellow Submarine", "The Beetles")
+        self.song2 = Song("Hey Jude", "The Beetles")
+
 
 
 
@@ -38,3 +38,18 @@ class TestRoom(unittest.TestCase):
         self.room1.add_guest_room(self.guest1)
         self.assertEqual("Bob", self.room1.guests[0].name)
 
+    def test_remove_guest_from_room(self):
+        self.room1.add_guest_room(self.guest1)
+        guest_remove = self.guest1
+        self.room1.remove_guest(guest_remove)
+        self.assertEqual(0, len(self.room1.guests))
+
+    def test_add_song_to_room(self):
+        self.room1.add_song_room(self.song1)
+        self.assertEqual("Yellow Submarine", self.room1.songs[0].name)
+
+
+    def test_remove_song_from_room(self):
+        self.room1.add_song_room(self.song1)
+        self.room1.remove_song(self.song1)
+        self.assertEqual(0, len(self.room1.songs))

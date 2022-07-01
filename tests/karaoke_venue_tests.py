@@ -12,6 +12,13 @@ class TestVenue(unittest.TestCase):
     def setUp(self):
         self.venue_1 = Venue("code clan karaoke", 200, 10)
         self.venue_2 = Venue("Karaoke place", 100, 1)
+        self.song1 = Song("Yellow Submarine", "The Beetles")
+        self.song2 = Song("Hey Jude", "The Beetles")
+        self.room1 = Room("room 1", 5)
+        self.room2 = Room("room 2", 3)
+        self.guest1 = Guest("Bob", 25.00, "Yellow Submarine")
+        self.guest2 = Guest("Frank", 50.00, "Hey Jude")
+        self.guest3 = Guest("Steve", 30.00, "Let It Be")
 
 
 
