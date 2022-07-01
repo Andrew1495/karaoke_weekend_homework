@@ -18,3 +18,6 @@ class TestGuest(unittest.TestCase):
     def test_guest_has_fav_song(self):
         self.assertEqual("Yellow Submarine", self.guest1.fav_song)
         self.assertEqual("Hey Jude", self.guest2.fav_song)
+
+    def test_guest_item_list_is_empty(self):
+        self.assertEqual(0, len(self.guest1.item_list))

@@ -3,3 +3,4 @@ class Guest:
         self.name = input_name
         self.wallet = input_wallet
         self.fav_song = input_fav_song
+        self.item_list = []
