@@ -1,3 +1,5 @@
+from src.room import Room
+
 class Venue:
     def __init__(self, input_name, input_till, input_room_amount, input_price):
 
@@ -61,3 +63,11 @@ class Venue:
 
     def add_room(self, room):
         self.rooms.append(room)
+
+    def setting_up_rooms(self, room_size):
+        i = 1
+        while len(self.rooms) < self.amount_of_rooms:
+            self.rooms.append(Room(f"room {i}", room_size))
+            i += 1
+        
+

@@ -2,10 +2,12 @@ import unittest
 from src.room import Room
 from src.guest import Guest
 from src.song import Song
+from src.karaoke_venue import Venue
 
 
 class TestRoom(unittest.TestCase):
     def setUp(self):
+        self.venue_1 = Venue("code clan karaoke", 200, 10, 5.00)
         self.room1 = Room("room 1", 5)
         self.room2 = Room("room 2", 3)
         self.guest1 = Guest("Bob", 25.00, "Yellow Submarine")
@@ -35,11 +37,11 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(0, len(self.room2.guests))
 
     def test_add_guest_to_room(self):
-        self.room1.add_guest_room(self.guest1)
+        self.room1.add_guest_room(self.guest1, self.venue_1)
         self.assertEqual("Bob", self.room1.guests[0].name)
 
     def test_remove_guest_from_room(self):
-        self.room1.add_guest_room(self.guest1)
+        self.room1.add_guest_room(self.guest1, self.venue_1)
         guest_remove = self.guest1
         self.room1.remove_guest(guest_remove)
         self.assertEqual(0, len(self.room1.guests))
@@ -53,3 +55,10 @@ class TestRoom(unittest.TestCase):
         self.room1.add_song_room(self.song1)
         self.room1.remove_song(self.song1)
         self.assertEqual(0, len(self.room1.songs))
+
+    def test_customer_fav_song(self):
+        self.room1.add_song_room(self.song1)
+        self.room1.add_guest_room(self.guest1, self.venue_1)
+        reaction = self.guest1.has_fav_song(self.room1)
+        self.assertEqual("wooooo", reaction)
+        

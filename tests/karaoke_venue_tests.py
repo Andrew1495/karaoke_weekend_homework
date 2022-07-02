@@ -103,6 +103,49 @@ class TestVenue(unittest.TestCase):
 
     def test_add_guest_to_room(self):
         self.venue_2.add_room(self.room3)
-        self.room3.add_guest_room(self.guest1)
-        self.assertEqual("Bob", self.venue_2.rooms[0].guest[0].name)
+        self.room3.add_guest_room(self.guest1, self.venue_2)
+        self.assertEqual("Bob", self.venue_2.rooms[0].guests[0].name)
+        
+    def test_remove_guest_from_room(self):
+        self.venue_2.add_room(self.room3)
+        self.room3.add_guest_room(self.guest1, self.venue_2)
+        self.assertEqual("Bob", self.venue_2.rooms[0].guests[0].name)
+        self.room3.remove_guest(self.guest1)
+        self.assertEqual(0, len(self.venue_2.rooms[0].guests))
+
+    def test_full_room_adding(self):
+        self.venue_2.add_room(self.room3)
+        self.room3.add_guest_room(self.guest1, self.venue_2)
+        self.room3.add_guest_room(self.guest2, self.venue_2)
+        self.assertEqual(1, len(self.venue_2.rooms[0].guests))
+
+    def test_adding_max_rooms(self):
+        self.venue_1.setting_up_rooms(5)
+        self.assertEqual(10, len(self.venue_1.rooms))
+
+    def test_adding_max_rooms_and_adding_customers(self):
+        self.venue_1.setting_up_rooms(5)
+        self.venue_1.rooms[0].add_guest_room(self.guest1, self.venue_1)
+        self.venue_1.rooms[0].add_guest_room(self.guest2, self.venue_1)
+        self.venue_1.rooms[0].add_guest_room(self.guest3, self.venue_1)
+        self.assertEqual(3, len(self.venue_1.rooms[0].guests))
+
+
+    def test_adding_customer_who_cant_afford(self):
+        self.venue_1.setting_up_rooms(5)
+        self.venue_1.rooms[0].add_guest_room(self.guest4, self.venue_1)
+        self.assertEqual(0, len(self.venue_1.rooms[0].guests))
+
+    def testing_customer_paying_for_room_and_items(self):
+        self.venue_1.setting_up_rooms(5)
+        self.venue_1.rooms[0].add_guest_room(self.guest1, self.venue_1)
+        self.venue_1.add_item_menu(self.drink1)
+        item = self.venue_1.find_item_buy_name(self.drink1.name)
+        self.venue_1.add_item_to_guest(self.guest1, item)
+        self.venue_1.customer_pay_tab(self.guest1)
+        self.venue_1.rooms[0].remove_guest(self.guest1)
+        self.assertEqual(17.00, self.guest1.wallet)
+        self.assertEqual(208, self.venue_1.till)
+        self.assertEqual(49, self.venue_1.menu[0].quanity)
+
     

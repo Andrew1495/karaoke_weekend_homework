@@ -9,8 +9,9 @@ class Room:
 
     
 
-    def add_guest_room(self, guest):
-        self.guests.append(guest)
+    def add_guest_room(self, guest, venue):
+        if len(self.guests) < self.room_capacity and guest.wallet >= venue.price:
+            self.guests.append(guest)
 
     def remove_guest(self, guest):
         for g in self.guests:
