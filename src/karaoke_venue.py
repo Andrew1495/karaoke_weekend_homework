@@ -51,3 +51,13 @@ class Venue:
             tab += i.price
         guest.wallet -= tab + self.price
         self.till += tab + self.price
+
+    def check_room_full(self):
+        for room in self.rooms:
+            if len(room) == room.room_capacity:
+                return True
+        else:
+            return False
+
+    def add_room(self, room):
+        self.rooms.append(room)

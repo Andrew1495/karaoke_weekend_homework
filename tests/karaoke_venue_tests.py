@@ -17,6 +17,7 @@ class TestVenue(unittest.TestCase):
         self.song2 = Song("Hey Jude", "The Beetles")
         self.room1 = Room("room 1", 5)
         self.room2 = Room("room 2", 3)
+        self.room3 = Room("room 3", 1)
         self.guest1 = Guest("Bob", 25.00, "Yellow Submarine")
         self.guest2 = Guest("Frank", 50.00, "Hey Jude")
         self.guest3 = Guest("Steve", 30.00, "Let It Be")
@@ -94,4 +95,14 @@ class TestVenue(unittest.TestCase):
         self.assertEqual(49, self.venue_1.menu[0].quanity)
 
 
+    def test_add_room_to_venue(self):
+        self.venue_1.add_room(self.room1)
+        self.assertEqual(1, len(self.venue_1.rooms))
+        self.assertEqual("room 1", self.venue_1.rooms[0].name)
+
+
+    def test_add_guest_to_room(self):
+        self.venue_2.add_room(self.room3)
+        self.room3.add_guest_room(self.guest1)
+        self.assertEqual("Bob", self.venue_2.rooms[0].guest[0].name)
     
