@@ -62,3 +62,36 @@ class TestVenue(unittest.TestCase):
         can_afford = self.venue_1.guest_can_afford(self.guest4, self.drink1)
         self.assertEqual(False, can_afford)
 
+    def test_adding_items_to_menu(self):
+        self.venue_1.add_item_menu(self.drink1)
+        self.assertEqual(1, len(self.venue_1.menu))
+        self.assertEqual("beer", self.venue_1.menu[0].name)
+
+    def test_find_item_by_name(self):
+        self.venue_1.add_item_menu(self.drink1)
+        item = self.venue_1.find_item_buy_name(self.drink1.name)
+        self.assertEqual(self.drink1, item)
+
+    def test_cannot_find_item(self):
+        item = self.venue_1.find_item_buy_name(self.food1.name)
+        self.assertEqual(None, item)
+
+    def test_adding_drink_to_customer(self):
+        self.venue_1.add_item_menu(self.drink1)
+        item = self.venue_1.find_item_buy_name(self.drink1.name)
+        self.venue_1.add_item_to_guest(self.guest1, item)
+        self.assertEqual(1, len(self.guest1.item_list))
+        self.assertEqual("beer", self.guest1.item_list[0].name)
+        self.assertEqual(49, self.venue_1.menu[0].quanity)
+
+    def test_customer_paying(self):
+        self.venue_1.add_item_menu(self.drink1)
+        item = self.venue_1.find_item_buy_name(self.drink1.name)
+        self.venue_1.add_item_to_guest(self.guest1, item)
+        self.venue_1.customer_pay_tab(self.guest1)
+        self.assertEqual(17.00, self.guest1.wallet)
+        self.assertEqual(208.00, self.venue_1.till)
+        self.assertEqual(49, self.venue_1.menu[0].quanity)
+
+
+    
